@@ -1,0 +1,24 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compileOnly 'org.openosrs:api:1.1.0'
+}
+
+jar {
+  from {
+    configurations.compileClasspath.get().map { file ->
+      project.zipTree(file)
+    }
+  }
+  manifest {
+    attributes(
+      'Main-Class': 'AccountSwitcher'
+    )
+  }
+}
